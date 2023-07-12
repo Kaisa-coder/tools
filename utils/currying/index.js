@@ -6,10 +6,12 @@
 function currying(func) {
   function curryFn(...args) {
     if (args.length >= func.length) {
-      return func(...args)
+      // return func(...args)
+      return func.apply(this, args);
     } else {
       return function (...newArgs) {
-        return curryFn(...args.concat(newArgs))
+        // return curryFn(...args.concat(newArgs))
+        return curryFn.apply(this, args.concat(newArgs));
       }
     }
   }

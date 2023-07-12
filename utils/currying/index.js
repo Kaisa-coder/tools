@@ -6,7 +6,7 @@
 function currying(func) {
   function curryFn(...args) {
     if (args.length >= func.length) {
-      func(...args)
+      return func(...args)
     } else {
       return function (...newArgs) {
         return curryFn(...args.concat(newArgs))

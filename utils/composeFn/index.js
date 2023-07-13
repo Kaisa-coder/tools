@@ -1,6 +1,6 @@
 /**
  * @description A function that combines functions
- * @param  {...any} funcs A list of functions grouped together
+ * @param  {...funcs} funcs A list of functions grouped together
  */
 function composeFn(...funcs) {
   const length = funcs.length;
@@ -13,9 +13,13 @@ function composeFn(...funcs) {
   }
 
   return function (...args) {
-    const result = funcs[0](...args);
+    // const result = funcs[0](...args);
+    const result = funcs[0].apply(this, args);
+
     for (let i = 0; i < length; i++) {
-      result = funcs[i](result)
+      // result = funcs[i](result)
+      result = funcs[i].apply(this, [result])
+
     }
     return result
   }
